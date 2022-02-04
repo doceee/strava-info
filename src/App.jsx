@@ -13,20 +13,23 @@ const App = () => {
   return (
     <main>
       {activity !== undefined && (
-        <div className='activity'>
-          <span className='cell'>
-            Type:
-            <br /> {activity.name}{' '}
-          </span>
-          <span className='cell'>
-            Date:
-            <br /> {formatDate(activity.start_date)}{' '}
-          </span>
-          <span className='cell'>
-            Distance:
-            <br /> {formatDistance(activity.distance)} km
-          </span>
-        </div>
+        <>
+          <p>Last activity</p>
+          <div className='activity'>
+            <span className='cell'>
+              Type:
+              <br /> {activity.name}{' '}
+            </span>
+            <span className='cell'>
+              Date:
+              <br /> {formatDate(activity.start_date)}{' '}
+            </span>
+            <span className='cell'>
+              Distance:
+              <br /> {formatDistance(activity.distance)} km
+            </span>
+          </div>
+        </>
       )}
     </main>
   );
