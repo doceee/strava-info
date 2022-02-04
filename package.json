@@ -1,0 +1,17 @@
+{
+  "name": "strava-app",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "vite --host",
+    "build": "vite build --outDir=./build"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "preact": "^10.6.5"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.1.7",
+    "vite": "^2.7.13"
+  }
+}
