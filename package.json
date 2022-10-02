@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "vite --host",
-    "build": "vite build --outDir=./build"
+    "start": "vite --port=8080",
+    "build": "vite build --outDir=./dist"
   },
   "dependencies": {
     "dotenv": "^16.0.0",
