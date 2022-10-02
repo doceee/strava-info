@@ -26,10 +26,19 @@ const App = () => {
         }, 300)
     }
 
-    const sort = () => {
-        let sortedActivities = activities.sort(
-            (a, b) => parseFloat(a.elapsed_time) - parseFloat(b.elapsed_time)
-        )
+    const sort = (type) => {
+        let sortedActivities
+
+        if (type === 'start_date') {
+            sortedActivities = activities.sort(
+                (a, b) => new Date(b.start_date) - new Date(a.start_date)
+            )
+        } else if (type === 'elapsed_time') {
+            sortedActivities = activities.sort(
+                (a, b) =>
+                    parseFloat(a.elapsed_time) - parseFloat(b.elapsed_time)
+            )
+        }
 
         setActivities(sortedActivities)
         setSortActivities(!sortActivities)
@@ -54,9 +63,9 @@ const App = () => {
                 <tr>
                     <th>Type</th>
                     <th>Moving Time</th>
-                    <th onClick={sort}>Elapsed Time</th>
+                    <th onClick={() => sort('elapsed_time')}>Elapsed Time</th>
                     <th>Distance</th>
-                    <th>Date</th>
+                    <th onClick={() => sort('start_date')}>Date</th>
                 </tr>
                 {activities &&
                     activities.map((activity, idx) => {
