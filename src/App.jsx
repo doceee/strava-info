@@ -1,54 +1,13 @@
 import {
-    stravaApiCall,
-    formatDate,
-    formatDistance,
     formatTime,
+    formatDate,
+    stravaApiCall,
+    formatDistance,
 } from './helpers'
 import { useEffect, useState } from 'preact/hooks'
 
 const App = () => {
     const [activities, setActivities] = useState()
-    const [sortActivities, setSortActivities] = useState(false)
-
-    const onFilteInput = (e) => {
-        setTimeout(async () => {
-            let filteredActivities = await stravaApiCall()
-            const name = e.target.value
-
-            if (name) {
-                filteredActivities = filteredActivities.filter(
-                    (activity) =>
-                        formatDistance(activity.distance).split('.')[0] === name
-                )
-            }
-
-            setActivities(filteredActivities)
-        }, 300)
-    }
-
-    const sort = (type) => {
-        let sortedActivities
-
-        if (type === 'start_date') {
-            sortedActivities = activities.sort(
-                (a, b) => new Date(b.start_date) - new Date(a.start_date)
-            )
-        } else if (type === 'elapsed_time') {
-            sortedActivities = activities.sort(
-                (a, b) =>
-                    parseFloat(a.elapsed_time) - parseFloat(b.elapsed_time)
-            )
-        }
-
-        setActivities(sortedActivities)
-        setSortActivities(!sortActivities)
-    }
-
-    useEffect(() => {
-        if (sortActivities) {
-            setSortActivities(!sortActivities)
-        }
-    }, [activities])
 
     useEffect(async () => {
         const activities = await stravaApiCall()
@@ -58,7 +17,6 @@ const App = () => {
 
     return (
         <div>
-            <input type="text" placeholder="Filter..." onInput={onFilteInput} />
             <table>
                 <tr>
                     <th>Type</th>
